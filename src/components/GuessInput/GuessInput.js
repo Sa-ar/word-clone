@@ -1,35 +1,18 @@
 import React, { useState } from "react";
 
-function GuessInput() {
-  const [guess, setGuess] = useState("");
+function GuessInput({ addGuess }) {
+  const [tentativeGuess, setTentativeGuess] = useState("");
 
   function handleChange(event) {
     const nextGuess = event.target.value.toUpperCase();
-    setGuess(nextGuess);
-  }
-
-  function handleInvalid({ target }) {
-    if (target.validity.typeMismatch) {
-      target.setCustomValidity("Expected to be 5 letters word.");
-    } else {
-      target.setCustomValidity("");
-    }
+    setTentativeGuess(nextGuess);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (guess.length !== 5) {
-      if (event.target.validity.typeMismatch) {
-        event.target.setCustomValidity("Expected to be 5 letters word.");
-      } else {
-        event.target.setCustomValidity("");
-      }
-      return;
-    }
-
-    console.log(guess);
-    setGuess("");
+    addGuess(tentativeGuess);
+    setTentativeGuess("");
   }
 
   return (
@@ -39,10 +22,10 @@ function GuessInput() {
         required
         id="guess-input"
         type="text"
-        value={guess}
+        value={tentativeGuess}
         onChange={handleChange}
-        onInvalid={handleInvalid}
         pattern="[a-zA-Z]{5}"
+        title="5 letters guess"
       />
     </form>
   );
