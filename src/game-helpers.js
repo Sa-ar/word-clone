@@ -2,24 +2,33 @@ export function checkGuess(guess, answer) {
   if (!guess) {
     return null;
   }
+  const guessChars = guess.toUpperCase().split("");
+  const answerChars = answer.split("");
 
-  const guessChars = guess.toUpperCase().split('');
-  const answerChars = answer.split('');
+  const result = guessChars.map((letter) => ({ letter, status: "incorrect" }));
 
-  return guessChars.map((guessChar, index) => {
-    const answerChar = answerChars[index];
-
-    let status;
-    if (guessChar === answerChar) {
-      status = 'correct';
-    } else if (answerChars.includes(guessChar)) {
-      status = 'misplaced';
-    } else {
-      status = 'incorrect';
+  // Check for correct characters first, and remove matches from the answer
+  guessChars.forEach((letter, index) => {
+    if (letter !== answerChars[index]) {
+      return letter;
     }
-    return {
-      letter: guessChar,
-      status,
-    };
+
+    result[index].status = "correct";
+    answerChars[index] = null;
+    return null;
   });
+
+  // Check for misplaced letters from the remaining characters
+  guessChars.map((letter, index) => {
+    if (!letter) return null;
+
+    const misplacedIndex = answerChars.findIndex((char) => letter === char);
+    if (misplacedIndex >= 0) {
+      result[index].status = "misplaced";
+      answerChars[misplacedIndex] = null;
+    }
+    return null;
+  });
+
+  return result;
 }
