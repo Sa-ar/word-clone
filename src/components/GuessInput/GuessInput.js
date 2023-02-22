@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NUM_OF_LETTERS_ALLOWED } from "../../constants";
 
 function GuessInput({ addGuess }) {
   const [tentativeGuess, setTentativeGuess] = useState("");
@@ -24,8 +25,8 @@ function GuessInput({ addGuess }) {
         type="text"
         value={tentativeGuess}
         onChange={handleChange}
-        pattern="[a-zA-Z]{5}"
-        title="5 letters guess"
+        pattern={`[a-zA-Z]{${NUM_OF_LETTERS_ALLOWED}}`}
+        title={`${NUM_OF_LETTERS_ALLOWED} letters guess`}
       />
     </form>
   );
