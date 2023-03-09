@@ -15,8 +15,8 @@ function Guess({ value, answer }) {
       {range(NUM_OF_LETTERS_ALLOWED).map((spot) => (
         <Cell
           key={spot}
-          status={checkedGuess[spot]?.status ?? null}
-          value={checkedGuess[spot]?.letter ?? ""}
+          status={checkedGuess?.[spot]?.status}
+          value={checkedGuess?.[spot]?.letter}
         />
       ))}
     </p>
