@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { NUM_OF_LETTERS_ALLOWED } from "../../constants";
 
-function GuessInput({ addGuess }) {
+function GuessInput({ addGuess, gameStatus }) {
   const [tentativeGuess, setTentativeGuess] = useState("");
+  const className =
+    gameStatus !== "running"
+      ? "guess-input-wrapper dangerous-hidden"
+      : "guess-input-wrapper";
 
   function handleChange(event) {
     const nextGuess = event.target.value.toUpperCase();
@@ -17,10 +21,11 @@ function GuessInput({ addGuess }) {
   }
 
   return (
-    <form className="guess-input-wrapper" onSubmit={handleSubmit}>
+    <form className={className} onSubmit={handleSubmit}>
       <label htmlFor="guess-input">Enter guess:</label>
       <input
         required
+        disabled={gameStatus !== "running"}
         id="guess-input"
         type="text"
         value={tentativeGuess}

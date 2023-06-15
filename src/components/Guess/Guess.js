@@ -10,6 +10,7 @@ function Cell({ value, status }) {
 
 function Guess({ value, answer }) {
   const checkedGuess = checkGuess(value, answer);
+
   return (
     <p className="guess">
       {range(NUM_OF_LETTERS_ALLOWED).map((spot) => (
