@@ -1,5 +1,6 @@
 import React from "react";
 import useOnKeyPressed from "../../hooks/useOnKeyPressed";
+import { NUM_OF_LETTERS_ALLOWED } from "../../constants";
 
 const ROWS = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -23,6 +24,7 @@ const Keyboard = ({
   validatedGuesses,
   addLetter,
   deleteLastLetter,
+  submitWord,
   deletable,
   disabled,
   isGameOver,
@@ -33,7 +35,9 @@ const Keyboard = ({
   useOnKeyPressed(({ key }) => {
     if (key === "Backspace") {
       deleteLastLetter();
-    } else if (key.length === 1) {
+    } else if (key === "Enter") {
+      submitWord();
+    } else if (key.length === 1 && key.match(/[a-z]/i)) {
       addLetter(key.toUpperCase());
     }
   });
@@ -46,10 +50,7 @@ const Keyboard = ({
             <button
               key={letter}
               onClick={() => addLetter(letter)}
-              disabled={
-                ["correct", "incorrect"].includes(statusByLetter[letter]) ||
-                disabled
-              }
+              disabled={statusByLetter[letter] === "incorrect" || disabled}
               className={`letter ${statusByLetter[letter] || ""}`}
             >
               {letter}

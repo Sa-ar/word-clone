@@ -21,10 +21,13 @@ function Game() {
   const [results, setResults] = useState({ won: 0, lost: 0, total: 0 });
   const [tentativeGuess, setTentativeGuess] = useState("");
 
-  const addGuess = (tentativeGuess) => {
+  const addGuess = () => {
+    if (tentativeGuess.length !== NUM_OF_LETTERS_ALLOWED) return;
     const nextGuesses = [...guesses, tentativeGuess];
     // @ts-ignore
     setGuesses(nextGuesses);
+
+    setTentativeGuess("");
 
     if (tentativeGuess.toUpperCase() === answer) {
       setGameStatus("won");
@@ -85,6 +88,7 @@ function Game() {
         disabled={tentativeGuess.length >= NUM_OF_LETTERS_ALLOWED}
         isGameOver={gameStatus !== "running"}
         deletable={tentativeGuess.length > 0}
+        submitWord={addGuess}
       />
       {gameStatus === "won" && <WonBanner numOfGuesses={guesses.length} />}
       {gameStatus === "lost" && <LostBanner answer={answer} />}

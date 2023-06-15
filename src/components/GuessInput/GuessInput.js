@@ -7,8 +7,6 @@ function GuessInput({
   tentativeGuess,
   setTentativeGuess,
 }) {
-  const lettersUsedRef = React.useRef(new Set());
-
   const className = isGameOver
     ? "guess-input-wrapper dangerous-hidden"
     : "guess-input-wrapper";
@@ -20,17 +18,6 @@ function GuessInput({
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (tentativeGuess.length !== NUM_OF_LETTERS_ALLOWED) {
-      alert(`Please enter ${NUM_OF_LETTERS_ALLOWED} letters`);
-      return;
-    }
-
-    tentativeGuess
-      .toUpperCase()
-      .split("")
-      .forEach((letter) => lettersUsedRef.current.add(letter));
-    addGuess(tentativeGuess);
-    setTentativeGuess("");
   }
 
   return (
