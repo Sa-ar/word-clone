@@ -1,23 +1,20 @@
 import React from "react";
 import { NUM_OF_LETTERS_ALLOWED } from "../../constants";
 import { range } from "../../utils";
-import { checkGuess } from "../../game-helpers";
 
-function Cell({ value, status }) {
+function Cell({ letter, status }) {
   const className = status ? `cell ${status}` : "cell";
-  return <span className={className}>{value}</span>;
+  return <span className={className}>{letter}</span>;
 }
 
 function Guess({ value, answer }) {
-  const checkedGuess = checkGuess(value, answer);
-
   return (
     <p className="guess">
-      {range(NUM_OF_LETTERS_ALLOWED).map((spot) => (
+      {range(NUM_OF_LETTERS_ALLOWED).map((num) => (
         <Cell
-          key={spot}
-          status={checkedGuess?.[spot]?.status}
-          value={checkedGuess?.[spot]?.letter}
+          key={num}
+          letter={value ? value[num].letter : undefined}
+          status={value ? value[num].status : undefined}
         />
       ))}
     </p>

@@ -6,11 +6,7 @@ function GameStatistics({ results, resetGame, isStart }) {
       <p>
         Won: {results.won} Lost: {results.lost} Total: {results.total}
       </p>
-      <button
-        className="reset-game-button"
-        onClick={resetGame}
-        disabled={isStart}
-      >
+      <button className="button" onClick={resetGame} disabled={isStart}>
         Reset Game
       </button>
     </div>
