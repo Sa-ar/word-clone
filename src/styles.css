@@ -10,6 +10,11 @@ html {
   --color-success: hsl(150deg 70% 30%);
   --color-warning: hsl(50deg 100% 30%);
   --color-error: hsl(0deg 70% 45%);
+  --color-button: hsl(200deg 100% 50%);
+  --color-button-hover: hsl(200deg 100% 45%);
+  --color-button-active: hsl(200deg 100% 40%);
+  --color-button-disabled: hsl(199, 54%, 80%);
+  --color-button-text: hsl(200deg 100% 100%);
   --color-gray-100: hsl(0deg 0% 10%);
   --color-gray-300: hsl(0deg 0% 25%);
   --color-gray-500: hsl(0deg 0% 50%);
@@ -81,6 +86,33 @@ h1 {
   margin: 0 auto;
   min-width: 250px;
   max-width: min(500px, 58vh, 100%);
+}
+
+.game-statistics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reset-game-button {
+  background-color: var(--color-button);
+  border-radius: 3px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--color-button-text);
+}
+.reset-game-button:hover {
+  background-color: var(--color-button-hover);
+}
+.reset-game-button:active {
+  background-color: var(--color-button-active);
+}
+.reset-game-button:disabled {
+  background-color: var(--color-button-disabled);
+  cursor: not-allowed;
 }
 
 .guess-results {
