@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
-import GuessInput from "../GuessInput";
+import GuessMonitor from "../GuessMonitor";
 import GuessesHistory from "../GuessesHistory";
 import {
   NUM_OF_GUESSES_ALLOWED,
@@ -75,11 +75,10 @@ function Game() {
         isStart={guesses.length === 0}
       />
       <GuessesHistory validatedGuesses={validatedGuesses} answer={answer} />
-      <GuessInput
+      <GuessMonitor
         isGameOver={gameStatus !== "running"}
         addGuess={addGuess}
         tentativeGuess={tentativeGuess}
-        setTentativeGuess={setTentativeGuess}
       />
       <Keyboard
         validatedGuesses={validatedGuesses}

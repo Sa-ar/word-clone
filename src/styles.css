@@ -4,7 +4,7 @@
 html {
   overflow-y: scroll;
 
-  --game-spacing: 32px;
+  --game-spacing: 16px;
   --header-height: 4rem;
 
   --color-success: hsl(150deg 70% 30%);
@@ -80,6 +80,8 @@ h1 {
 .game-wrapper {
   flex: 1;
   display: flex;
+  justify-content: space-evenly;
+  max-height: 52rem;
   flex-direction: column;
   gap: var(--game-spacing);
   padding: var(--game-spacing) 32px;
@@ -116,7 +118,6 @@ h1 {
 }
 
 .guess-results {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -172,27 +173,24 @@ h1 {
   color: white;
 }
 
-.guess-input-wrapper {
+.guess-monitor-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 6.75rem;
+  height: 4.25rem;
 }
 
-.guess-input-wrapper label {
-  font-size: 1.25rem;
-}
-.guess-input-field {
+.guess-monitor-field {
   flex: 1;
   display: flex;
   gap: 4px;
 }
 
-.guess-input-wrapper input {
+.guess-monitor-wrapper .guess-monitor {
   display: block;
   width: 100%;
   font-size: 2rem;
-  border: 2px solid var(--color-gray-300);
+  border: 2px solid var(--color-button);
   border-radius: 4px;
   padding: 8px 16px;
   outline-offset: 4px;
@@ -228,6 +226,7 @@ h1 {
 }
 .keyboard .letter:disabled {
   background: white;
+  cursor: none;
 }
 
 .keyboard .letter.correct {

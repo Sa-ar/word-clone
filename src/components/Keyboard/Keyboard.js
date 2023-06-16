@@ -1,6 +1,5 @@
 import React from "react";
 import useOnKeyPressed from "../../hooks/useOnKeyPressed";
-import { NUM_OF_LETTERS_ALLOWED } from "../../constants";
 
 const ROWS = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
